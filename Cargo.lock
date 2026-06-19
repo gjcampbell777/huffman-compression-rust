@@ -163,7 +163,6 @@ dependencies = [
  "bit-vec",
  "clap",
  "commands",
- "lock",
  "rayon",
  "rmp-serde",
  "serde",
@@ -174,12 +173,6 @@ name = "is_terminal_polyfill"
 version = "1.70.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "a6cb138bb79a146c1bd460005623e142ef0181e3d0219cb493e02f7d08a35695"
-
-[[package]]
-name = "lock"
-version = "0.1.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "058cf9c2b0daa80dafc6d65b594ea04db8050522cfbf39f5d5aef2184f2a5a55"
 
 [[package]]
 name = "num-traits"
