@@ -7,5 +7,4 @@ RUN cargo build --release
 # Stage 2: Final minimal execution layer
 FROM debian:bookworm-slim
 WORKDIR /app
-COPY --from=builder /app/target/release/huffman-compression-rust /app/huffman-compression-rust
 ENTRYPOINT ["/app/huffman-compression-rust"]
