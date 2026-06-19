@@ -14,7 +14,7 @@ ENV CARGO_HOME=/usr/local/cargo
 ENV PATH="/usr/local/cargo/bin:${PATH}"
 
 # Install Rust (it will now install to the paths above)
-RUN curl --proto '=https' --tlsv1.2 -sSf https://rustup.rs | sh -s -- -y
+RUN curl --proto '=https' --tlsv1.2 -sSf https://rustup.rs | bash -s -- -y
 
 # Grant read and execute permissions to all users
 RUN chmod -R 755 /usr/local/cargo /usr/local/rustup
