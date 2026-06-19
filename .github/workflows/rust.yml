@@ -8,6 +8,7 @@ on:
 
 env:
   CARGO_TERM_COLOR: always
+  ARN_TO_ASSUME: ${{ secrets.RUST_DOCKER_ARN }}
 
 jobs:
   build:
@@ -20,7 +21,20 @@ jobs:
       run: cargo build --verbose
     - name: Run tests
       run: cargo test --verbose
-    - name: Build and Push Docker Imaage to Amazon ECR
+
+    - name: Configure aws credentials
+      uses: aws-actions/configure-aws-credentials@v2
+      with:
+        role-to-assume: ${{ env.ARN_TO_ASSUME }}
+        aws-region: us-east-1
+        
+    - name: Login to Amazon ECR
+      id: login-ecr
+      uses: aws-actions/amazon-ecr-login@v2
+      with:
+        registries: ${{ secrets.AWS_ID }}
+      
+    - name: Build and Push Docker Image to Amazon ECR
       run: |
         aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin ${{ secrets.AWS_ID }}.dkr.ecr.us-east-1.amazonaws.com
         docker build -t ${{ secrets.ECR_REGISTRY }}/${{ secrets.ECR_REPOSITORY_RUST }}:latest .
