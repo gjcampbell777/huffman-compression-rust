@@ -1,5 +1,5 @@
 # Stage 1: Build binary
-FROM rust:1.78-slim AS builder
+FROM rust:1.85-bookworm AS builder
 WORKDIR /app
 COPY . .
 RUN cargo build --release
@@ -8,4 +8,4 @@ RUN cargo build --release
 FROM debian:bookworm-slim
 WORKDIR /app
 COPY --from=builder /app/target/release/huffman-compression-rust /app/huffman-compression-rust
-ENTRYPOINT ["/app/my-rust-app"]
+ENTRYPOINT ["/app/huffman-compression-rust"]
