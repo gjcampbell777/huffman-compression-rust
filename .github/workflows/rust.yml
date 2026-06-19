@@ -22,5 +22,5 @@ jobs:
       run: cargo test --verbose
     - name: Build and Push Docker Imaage to Amazon ECR
       run: |
-        docker build -t $ECR_REGISTRY/$ECR_REPOSITORY_RUST:latest .
-        docker push $ECR_REGISTRY/$ECR_REPOSITORY_RUST:latest
+        docker build -t ${{ secrets.ECR_REGISTRY }}/${{ secrets.ECR_REPOSITORY_RUST }}:latest .
+        docker push ${{ secrets.ECR_REGISTRY }}/${{ secrets.ECR_REPOSITORY_RUST }}:latest
