@@ -20,3 +20,7 @@ jobs:
       run: cargo build --verbose
     - name: Run tests
       run: cargo test --verbose
+    - name: Build and Push Docker Imaage to Amazon ECR
+      run: |
+        docker build -t $ECR_REGISTRY/$ECR_REPOSITORY_RUST:latest .
+        docker push $ECR_REGISTRY/$ECR_REPOSITORY_RUST:latest
